@@ -12,13 +12,15 @@
         </div>
         <div class="flex items-center gap-2">
           <Timer class="w-5 h-5 text-blue-500" />
-          <GameTimer 
-            :isRunning="gameState === 'playing'" 
-            @timeout="$emit('timeout')" 
+          <GameTimer
+            :isRunning="gameState === 'playing'"
+            :isPaused="isPaused"
+            :duration="30"
+            @timeout="$emit('timeout')"
           />
         </div>
         <div class="px-3 py-1 bg-slate-700 rounded-full">
-          Round {{ currentRound }}/5
+          Round {{ currentRound }}
         </div>
       </div>
     </div>
@@ -26,16 +28,17 @@
 </template>
 
 <script setup lang="ts">
-import { MapPin, Trophy, Timer } from 'lucide-vue-next';
-import GameTimer from './GameTimer.vue';
+import { MapPin, Trophy, Timer } from "lucide-vue-next";
+import GameTimer from "./GameTimer.vue";
 
-defineProps<{
+const props = defineProps<{
   score: number;
   currentRound: number;
   gameState: string;
+  isPaused: boolean;
 }>();
 
-defineEmits<{
-  (e: 'timeout'): void;
+const emit = defineEmits<{
+  (e: "timeout"): void;
 }>();
 </script>

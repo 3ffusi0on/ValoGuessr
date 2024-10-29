@@ -9,11 +9,11 @@
           'p-4 rounded-lg transition',
           selectedMap === map.name
             ? 'bg-red-500 text-white'
-            : 'bg-slate-700 hover:bg-slate-600'
+            : 'bg-slate-700 hover:bg-slate-600',
         ]"
       >
         <img
-          :src="map.thumbnail"
+          :src="map.map"
           :alt="map.name"
           class="w-full aspect-video object-cover rounded-md mb-2"
         />
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Map } from '../data/maps';
+import type { Map } from "../data/maps";
 
 defineProps<{
   maps: Map[];
@@ -40,7 +40,7 @@ defineProps<{
 }>();
 
 defineEmits<{
-  (e: 'update:selectedMap', value: string): void;
-  (e: 'guess', value: string): void;
+  (e: "update:selectedMap", value: string): void;
+  (e: "guess", value: string): void;
 }>();
 </script>
