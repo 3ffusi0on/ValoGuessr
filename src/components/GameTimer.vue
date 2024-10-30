@@ -10,12 +10,12 @@ import { ref, watch, onUnmounted } from "vue";
 const props = withDefaults(
   defineProps<{
     isRunning: boolean;
-    isPaused: boolean;
     duration?: number;
+    round?: number;
   }>(),
   {
     duration: 30,
-    isPaused: false,
+    round: 1,
   }
 );
 
@@ -26,42 +26,32 @@ const emit = defineEmits<{
 const timeLeft = ref(props.duration);
 let timer: number | undefined;
 
-const startTimer = () => {
-  timer = setInterval(() => {
-    timeLeft.value--;
-    if (timeLeft.value <= 0) {
-      clearInterval(timer);
-      emit("timeout");
-    }
-  }, 1000);
-};
+watch(
+  () => props.round,
+  () => {
+    timeLeft.value = props.duration;
+  }
+);
 
 watch(
   () => props.isRunning,
   (newValue) => {
+    if (timer) clearInterval(timer);
+
     if (!newValue) {
-      if (timer) clearInterval(timer);
+      timeLeft.value = props.duration;
       return;
     }
 
-    timeLeft.value = props.duration;
-
-    if (!props.isPaused) {
-      startTimer();
-    }
+    timer = setInterval(() => {
+      timeLeft.value--;
+      if (timeLeft.value <= 0) {
+        clearInterval(timer);
+        emit("timeout");
+      }
+    }, 1000);
   },
   { immediate: true }
-);
-
-watch(
-  () => props.isPaused,
-  (newValue) => {
-    if (newValue && timer) {
-      clearInterval(timer);
-    } else if (!newValue && props.isRunning) {
-      startTimer();
-    }
-  }
 );
 
 onUnmounted(() => {

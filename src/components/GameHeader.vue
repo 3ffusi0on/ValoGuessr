@@ -14,8 +14,7 @@
           <Timer class="w-5 h-5 text-blue-500" />
           <GameTimer
             :isRunning="gameState === 'playing'"
-            :isPaused="isPaused"
-            :duration="30"
+            :round="currentRound"
             @timeout="$emit('timeout')"
           />
         </div>
@@ -35,7 +34,6 @@ const props = defineProps<{
   score: number;
   currentRound: number;
   gameState: string;
-  isPaused: boolean;
 }>();
 
 const emit = defineEmits<{
