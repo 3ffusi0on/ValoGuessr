@@ -6,47 +6,39 @@
       :score="score"
       :currentRound="currentRound"
       :gameState="gameState"
-      :isPaused="isPaused"
+      :hardMode="hardMode"
       @timeout="handleTimeout"
+      @update:hardMode="hardMode = $event"
     />
 
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto pt-20">
       <GameOver
         v-if="gameState === 'finished'"
         :score="score"
         @reset="resetGame"
       />
-      <div v-else class="space-y-8">
-        <div class="flex justify-center items-center">
+      <div v-else class="space-y-4">
+        <div class="max-w-4xl mx-auto">
           <MapImage
             :map="maps[currentImage]"
             :revealed="gameState === 'guessed'"
           />
         </div>
 
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-4xl mx-auto">
           <MapSelection
             v-if="gameState === 'playing'"
             :maps="maps"
-            v-model:selectedMap="selectedMap"
+            :selectedMap="selectedMap"
+            @update:selectedMap="selectedMap = $event"
             @guess="handleGuess"
           />
-          <div v-else class="text-center space-y-4">
-            <h3 class="text-2xl font-bold">
-              {{
-                selectedMap === maps[currentImage].name
-                  ? "🎉 Correct!"
-                  : "❌ Wrong!"
-              }}
-            </h3>
-            <p>The location was in {{ maps[currentImage].name }}</p>
-            <button
-              @click="startNewRound"
-              class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition flex items-center gap-2 mx-auto"
-            >
-              Next Round
-            </button>
-          </div>
+          <RoundResult
+            v-else
+            :selectedMap="selectedMap"
+            :mapName="maps[currentImage].name"
+            @nextRound="startNewRound"
+          />
         </div>
       </div>
     </main>
@@ -60,24 +52,24 @@ import GameHeader from "./components/GameHeader.vue";
 import MapImage from "./components/MapImage.vue";
 import MapSelection from "./components/MapSelection.vue";
 import GameOver from "./components/GameOver.vue";
+import RoundResult from "./components/RoundResult.vue";
 
 const score = ref(0);
 const currentRound = ref(1);
 const selectedMap = ref("");
 const gameState = ref<"playing" | "guessed" | "finished">("playing");
 const currentImage = ref(0);
-const isPaused = ref(false);
+const hardMode = ref(false);
 
-const getRandomIndex = (): number => {
-  return Math.floor(Math.random() * maps.length);
+const getRandomIndex = (arrayLength: number): number => {
+  return Math.floor(Math.random() * arrayLength);
 };
 
 const startNewRound = () => {
-  currentImage.value = getRandomIndex();
+  currentImage.value = getRandomIndex(maps[currentImage.value].images.length);
   gameState.value = "playing";
   selectedMap.value = "";
   currentRound.value++;
-  isPaused.value = false;
 };
 
 const handleGuess = (mapName: string) => {
@@ -88,11 +80,12 @@ const handleGuess = (mapName: string) => {
     score.value += 1000;
   }
   gameState.value = "guessed";
-  isPaused.value = true;
 };
 
 const handleTimeout = () => {
-  gameState.value = "guessed";
+  if (hardMode.value) {
+    gameState.value = "guessed";
+  }
 };
 
 const resetGame = () => {
@@ -102,6 +95,6 @@ const resetGame = () => {
 };
 
 onMounted(() => {
-  currentImage.value = getRandomIndex();
+  currentImage.value = getRandomIndex(maps[currentImage.value].images.length);
 });
 </script>

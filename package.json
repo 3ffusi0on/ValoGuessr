@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "flowbite": "^2.5.2",
     "lucide-vue-next": "^0.344.0",
     "vue": "^3.4.21"
   },
