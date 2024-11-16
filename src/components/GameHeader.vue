@@ -27,7 +27,7 @@
         </template>
         <ConfigMenu
           :hardMode="hardMode"
-          @update:hardMode="$emit('update:hardMode', $event)"
+          :soundsEnabled="soundsEnabled"
           @restart="$emit('restart')"
         />
       </div>
@@ -40,17 +40,18 @@ import { MapPin, Trophy, Timer } from "lucide-vue-next";
 import GameTimer from "./GameTimer.vue";
 import ConfigMenu from "./ConfigMenu.vue";
 import { useRouter } from "vue-router";
+import { useConfig } from "../store/config";
+
+const { hardMode, soundsEnabled } = useConfig();
 
 const props = defineProps<{
   score: number;
   currentRound: number;
   gameState: string;
-  hardMode: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: "timeout"): void;
-  (e: "update:hardMode", value: boolean): void;
   (e: "restart"): void;
 }>();
 
