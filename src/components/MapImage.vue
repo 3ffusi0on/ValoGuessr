@@ -1,7 +1,7 @@
 <template>
   <div class="relative aspect-video rounded-xl overflow-hidden shadow-xl">
     <img
-      :src="randomImage"
+      :src="randomImage?.url"
       alt="Location to guess"
       class="w-full h-full object-contain"
     />
@@ -21,14 +21,14 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import type { Map } from "../data/maps";
+import type { Map, MapImageData } from "../data/maps";
 
 const props = defineProps<{
   map: Map;
   revealed: boolean;
 }>();
 
-const randomImage = ref("");
+const randomImage = ref<MapImageData | null>(null);
 
 const pickRandomImage = () => {
   const images = props.map.images;

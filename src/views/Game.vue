@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { maps } from "../data/maps";
+import { maps, MapImageData } from "../data/maps";
 import GameHeader from "../components/GameHeader.vue";
 import MapImage from "../components/MapImage.vue";
 import MapSelection from "../components/MapSelection.vue";
@@ -57,6 +57,7 @@ const selectedMap = ref("");
 const gameState = ref<"playing" | "guessed" | "finished">("playing");
 const currentImage = ref(0);
 const hardMode = ref(false);
+const randomImage = ref<MapImageData | null>(null);
 
 const getRandomIndex = (arrayLength: number): number => {
   return Math.floor(Math.random() * arrayLength);
@@ -64,6 +65,10 @@ const getRandomIndex = (arrayLength: number): number => {
 
 const startNewRound = () => {
   currentImage.value = getRandomIndex(maps.length);
+  randomImage.value =
+    maps[currentImage.value].images[
+      getRandomIndex(maps[currentImage.value].images.length)
+    ];
   gameState.value = "playing";
   selectedMap.value = "";
   currentRound.value++;
@@ -74,7 +79,7 @@ const handleGuess = (mapName: string) => {
 
   const isCorrect = mapName === maps[currentImage.value].name;
   if (isCorrect) {
-    score.value += 1000;
+    score.value += randomImage.value?.points || 0;
   }
   gameState.value = "guessed";
 };
