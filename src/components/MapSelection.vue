@@ -26,7 +26,7 @@
       <button
         @click="$emit('guess', selectedMap)"
         :disabled="!selectedMap"
-        class="w-full max-w-xs py-3 bg-green-500 hover:bg-green-600 disabled:bg-slate-600 disabled:cursor-not-allowed rounded-lg font-semibold transition"
+        class="w-full max-w-xs py-3 bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 disabled:bg-slate-600 disabled:cursor-not-allowed rounded-lg font-semibold transition animate-pulse"
       >
         Make Guess
       </button>

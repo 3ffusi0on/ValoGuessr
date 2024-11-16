@@ -35,6 +35,12 @@
             class="toggle-switch focus:ring-0 focus:ring-offset-1"
           />
         </label>
+        <button
+          @click="$emit('restart')"
+          class="w-full text-left px-4 py-2 text-sm text-white hover:bg-slate-700"
+        >
+          Restart Game
+        </button>
       </div>
     </div>
   </div>
@@ -47,6 +53,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "update:hardMode", value: boolean): void;
+  (e: "restart"): void;
 }>();
 
 const updateHardMode = (event: Event) => {

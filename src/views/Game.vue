@@ -7,6 +7,7 @@
       :hardMode="hardMode"
       @timeout="handleTimeout"
       @update:hardMode="hardMode = $event"
+      @restart="resetGame"
     />
     <main class="container mx-auto pt-20">
       <GameOver

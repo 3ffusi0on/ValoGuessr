@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-2xl mx-auto text-center space-y-8 p-8">
+  <div class="max-w-2xl mx-auto text-center space-y-20 p-8">
     <div class="flex items-center justify-center gap-3">
       <MapPin class="w-10 h-10 text-red-500" />
       <h1
@@ -9,22 +9,33 @@
       </h1>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-8">
       <p class="text-xl text-gray-300">
         Test your Valorant map knowledge in this exciting guessing game!
       </p>
+      <h2 class="text-2xl font-bold text-gray-300">Features</h2>
       <ul class="text-gray-400 space-y-2">
         <li class="flex items-center gap-2 justify-center">
-          <Timer class="w-5 h-5 text-blue-500" />
-          <span>30 seconds per round</span>
-        </li>
-        <li class="flex items-center gap-2 justify-center">
           <Trophy class="w-5 h-5 text-yellow-500" />
-          <span>1000 points per correct guess</span>
+          <span>Points based on image difficulty</span>
         </li>
         <li class="flex items-center gap-2 justify-center">
           <Flag class="w-5 h-5 text-green-500" />
-          <span>Unlimited rounds total</span>
+          <span>Unlimited rounds</span>
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <ShieldAlert class="w-5 h-5 text-red-500" />
+          <span>Hard mode: No hints and timeout</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="space-y-8">
+      <h2 class="text-2xl font-bold text-gray-300">Upcoming Features</h2>
+      <ul class="text-gray-400 space-y-2">
+        <li class="flex items-center gap-2 justify-center">
+          <MapPin class="w-5 h-5 text-blue-500" />
+          <span>Ping the location you guessed on the map</span>
         </li>
       </ul>
     </div>
@@ -39,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { MapPin, Timer, Trophy, Flag } from "lucide-vue-next";
+import { MapPin, Trophy, Flag, ShieldAlert } from "lucide-vue-next";
 
 defineEmits<{
   (e: "start"): void;

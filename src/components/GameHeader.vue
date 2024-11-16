@@ -28,6 +28,7 @@
         <ConfigMenu
           :hardMode="hardMode"
           @update:hardMode="$emit('update:hardMode', $event)"
+          @restart="$emit('restart')"
         />
       </div>
     </div>
@@ -50,6 +51,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: "timeout"): void;
   (e: "update:hardMode", value: boolean): void;
+  (e: "restart"): void;
 }>();
 
 const router = useRouter();
