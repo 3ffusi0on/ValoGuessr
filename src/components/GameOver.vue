@@ -17,6 +17,6 @@ defineProps<{
 }>();
 
 defineEmits<{
-  (e: 'reset'): void;
+  (e: "reset"): void;
 }>();
 </script>

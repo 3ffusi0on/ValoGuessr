@@ -1,73 +1,43 @@
 <template>
-  <header
-    class="fixed top-0 left-0 right-0 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 z-50 transition-colors duration-300"
-  >
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2 cursor-pointer" @click="navigateHome">
-        <MapPin class="w-6 h-6 text-red-500" />
-        <h1 class="text-2xl font-bold">ValorantGuessr</h1>
-      </div>
-      <div class="flex items-center gap-4">
-        <template v-if="gameState !== 'start'">
-          <div v-if="hardMode" class="flex items-center gap-2">
-            <Timer class="w-5 h-5 text-blue-500" />
-            <GameTimer
-              :isRunning="gameState === 'playing'"
-              :round="currentRound"
-              @timeout="$emit('timeout')"
-            />
-          </div>
-          <div class="flex items-center gap-2">
-            <Trophy class="w-5 h-5 text-yellow-500" />
-            <span class="font-semibold">{{ score }}</span>
-          </div>
-          <div
-            class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-full transition-colors duration-300"
-          >
-            Round {{ currentRound }}
-          </div>
-        </template>
-        <button
-          @click="toggleTheme"
-          class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-300"
-        >
-          <Sun v-if="isDark" class="w-5 h-5" />
-          <Moon v-else class="w-5 h-5" />
-        </button>
-        <ConfigMenu
-          :hardMode="hardMode"
-          :soundsEnabled="soundsEnabled"
-          @restart="$emit('restart')"
+  <Navigation @restart="$emit('restart')">
+    <template v-if="gameState !== 'start'">
+      <div v-if="hardMode" class="flex items-center gap-2">
+        <Timer class="w-5 h-5 text-blue-500" />
+        <GameTimer
+          :isRunning="gameState === 'playing'"
+          :round="currentRound"
+          @timeout="$emit('timeout')"
         />
       </div>
-    </div>
-  </header>
+      <div class="flex items-center gap-2">
+        <Trophy class="w-5 h-5 text-yellow-500" />
+        <span class="font-semibold">{{ score }}</span>
+      </div>
+      <div
+        class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded-full transition-colors duration-300"
+      >
+        Round {{ currentRound }}
+      </div>
+    </template>
+  </Navigation>
 </template>
 
 <script setup lang="ts">
-import { MapPin, Trophy, Timer, Sun, Moon } from "lucide-vue-next";
+import { Trophy, Timer } from "lucide-vue-next";
 import GameTimer from "./GameTimer.vue";
-import ConfigMenu from "./ConfigMenu.vue";
-import { useRouter } from "vue-router";
+import Navigation from "./Navigation.vue";
 import { useConfig } from "../store/config";
-import { useTheme } from "../store/theme";
 
-const { hardMode, soundsEnabled } = useConfig();
-const { isDark, toggleTheme } = useTheme();
+const { hardMode } = useConfig();
 
-const props = defineProps<{
+defineProps<{
   score: number;
   currentRound: number;
   gameState: string;
 }>();
 
-const emit = defineEmits<{
+defineEmits<{
   (e: "timeout"): void;
   (e: "restart"): void;
 }>();
-
-const router = useRouter();
-const navigateHome = () => {
-  router.push("/");
-};
 </script>

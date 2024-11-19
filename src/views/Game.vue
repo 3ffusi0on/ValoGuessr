@@ -14,7 +14,7 @@
       @timeout="handleTimeout"
       @restart="resetGame"
     />
-    <main class="container mx-auto pt-20">
+    <main class="container mx-auto pt-24">
       <transition name="fade" mode="out-in">
         <GameOver
           v-if="gameState === 'finished'"
