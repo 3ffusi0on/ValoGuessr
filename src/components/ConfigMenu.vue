@@ -3,7 +3,7 @@
     <button
       type="button"
       @click="toggleDropdown"
-      class="inline-flex items-center p-2 text-sm font-medium text-center text-white bg-slate-700 rounded-lg hover:bg-slate-600 focus:ring-2 focus:outline-none focus:ring-slate-500"
+      class="inline-flex items-center p-2 text-sm font-medium text-center text-slate-900 dark:text-white bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 focus:ring-2 focus:outline-none focus:ring-slate-500 transition-colors duration-300"
     >
       <svg
         class="w-5 h-5"
@@ -20,13 +20,13 @@
 
     <div
       :class="[
-        'z-10 absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-100',
+        'z-10 absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-300',
         isOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
       ]"
     >
       <div class="py-1">
         <label
-          class="flex items-center justify-between space-x-2 px-4 py-2 text-sm text-white hover:bg-slate-700 cursor-pointer"
+          class="flex items-center justify-between space-x-2 px-4 py-2 text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors duration-300"
         >
           <span>Hard Mode</span>
           <input
@@ -37,7 +37,7 @@
           />
         </label>
         <label
-          class="flex items-center justify-between space-x-2 px-4 py-2 text-sm text-white hover:bg-slate-700 cursor-pointer"
+          class="flex items-center justify-between space-x-2 px-4 py-2 text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors duration-300"
         >
           <span>Enable Sounds</span>
           <input
@@ -49,7 +49,7 @@
         </label>
         <button
           @click="handleRestart"
-          class="w-full text-left px-4 py-2 text-sm text-white hover:bg-slate-700 flex items-center justify-between"
+          class="w-full text-left px-4 py-2 text-sm text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between transition-colors duration-300"
         >
           <span>Restart Game</span>
           <svg

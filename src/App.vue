@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white overflow-hidden"
+    class="min-h-screen bg-gradient-to-br from-slate-100 to-white dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-white overflow-hidden transition-colors duration-300"
   >
     <router-view v-slot="{ Component }">
       <transition name="page" mode="out-in">
