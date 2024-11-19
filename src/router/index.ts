@@ -1,7 +1,7 @@
-
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import Game from '../views/Game.vue';
+import GameFindMap from '../views/GameFindMap.vue';
+import GameFindCoordinates from '../views/GameFindCoordinates.vue';
 
 const routes = [
   {
@@ -10,9 +10,18 @@ const routes = [
     component: Home,
   },
   {
-    path: '/game',
-    name: 'Game',
-    component: Game,
+    path: '/game-find-map',
+    name: 'GameFindMap',
+    component: GameFindMap,
+  },
+  {
+    path: '/game-find-coordinates',
+    name: 'GameFindCoordinates',
+    component: GameFindCoordinates,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
   },
 ];
 

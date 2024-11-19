@@ -5,7 +5,10 @@
     </div>
     <Navigation />
     <div class="pt-24">
-      <StartScreen @start="startGame" />
+      <StartScreen
+        @startFindMap="startFindMapGame"
+        @startFindCoordinates="startFindCoordinatesGame"
+      />
     </div>
   </div>
 </template>
@@ -17,8 +20,12 @@ import Navigation from "../components/Navigation.vue";
 
 const router = useRouter();
 
-const startGame = () => {
-  router.push("/game");
+const startFindMapGame = () => {
+  router.push({ name: "GameFindMap" });
+};
+
+const startFindCoordinatesGame = () => {
+  router.push({ name: "GameFindCoordinates" });
 };
 </script>
 

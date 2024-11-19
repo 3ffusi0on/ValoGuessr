@@ -22,10 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
-import { useConfig } from "../store/config";
-
-const { soundsEnabled } = useConfig();
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { playSound } from "../utils/audio";
 
 const emit = defineEmits<{
   (e: "complete"): void;
@@ -35,41 +33,15 @@ const currentNumber = ref<string | number>(3);
 const countdownSound = new Audio("/assets/sounds/countdown-beep.mp3");
 const startSound = new Audio("/assets/sounds/game-start.mp3");
 
-const playSound = (isStart = false) => {
-  if (soundsEnabled.value) {
-    if (isStart) {
-      startSound
-        .play()
-        .catch((error) => console.error("Failed to play start sound:", error));
-    } else {
-      countdownSound.currentTime = 0;
-      countdownSound
-        .play()
-        .catch((error) =>
-          console.error("Failed to play countdown sound:", error)
-        );
-    }
-  }
-};
-
-const checkAudioSupport = (audio: HTMLAudioElement) => {
-  audio.onerror = () => {
-    console.error("Failed to load audio:", audio.src);
-  };
-};
-
-checkAudioSupport(countdownSound);
-checkAudioSupport(startSound);
-
 let countdown: ReturnType<typeof setInterval>;
 
 onMounted(() => {
-  playSound();
+  playSound(countdownSound);
 
   countdown = setInterval(() => {
     if (currentNumber.value === 1) {
       currentNumber.value = "GO!";
-      playSound(true);
+      playSound(startSound);
       clearInterval(countdown);
 
       setTimeout(() => {
@@ -79,7 +51,7 @@ onMounted(() => {
       clearInterval(countdown);
     } else {
       currentNumber.value = Number(currentNumber.value) - 1;
-      playSound();
+      playSound(countdownSound);
     }
   }, 1000);
 });

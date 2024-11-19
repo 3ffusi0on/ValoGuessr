@@ -40,15 +40,28 @@
       </ul>
     </div>
 
-    <button
-      @click="startGame"
-      class="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg font-bold text-lg hover:opacity-90 transition-all hover:scale-105 animate-pulse relative overflow-hidden group"
-    >
-      <span class="relative z-10">Start Game</span>
-      <div
-        class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"
-      ></div>
-    </button>
+    <div class="flex justify-center gap-4">
+      <button
+        @click="startFindMapGame"
+        class="w-64 px-8 py-4 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg font-bold text-lg hover:opacity-90 transition-all hover:scale-105 animate-pulse relative overflow-hidden group"
+      >
+        <span class="relative z-10">Find The Map</span>
+        <div
+          class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"
+        ></div>
+      </button>
+
+      <button
+        disabled
+        @click="startFindCoordinatesGame"
+        class="w-64 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-bold text-lg hover:opacity-90 transition-all hover:scale-105 animate-pulse relative overflow-hidden group"
+      >
+        <span class="relative z-10">Find the Coordinate</span>
+        <div
+          class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"
+        ></div>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -56,14 +69,23 @@
 import { MapPin, Trophy, Flag, ShieldAlert } from "lucide-vue-next";
 
 const emit = defineEmits<{
-  (e: "start"): void;
+  (e: "startFindMap"): void;
+  (e: "startFindCoordinates"): void;
 }>();
 
-const startGame = () => {
+const startFindMapGame = () => {
   const button = document.querySelector("button");
   button?.classList.add("scale-150", "opacity-0");
   setTimeout(() => {
-    emit("start");
+    emit("startFindMap");
+  }, 500);
+};
+
+const startFindCoordinatesGame = () => {
+  const button = document.querySelector("button");
+  button?.classList.add("scale-150", "opacity-0");
+  setTimeout(() => {
+    emit("startFindCoordinates");
   }, 500);
 };
 </script>

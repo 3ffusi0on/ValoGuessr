@@ -1,16 +1,10 @@
 <template>
   <div class="animate-game-enter">
-    <Countdown
-      v-if="showCountdown"
-      @complete="startGame"
-      :soundsEnabled="soundsEnabled"
-    />
+    <Countdown v-if="showCountdown" @complete="startGame" />
     <GameHeader
       :score="score"
       :currentRound="currentRound"
       :gameState="gameState"
-      :hardMode="hardMode"
-      :soundsEnabled="soundsEnabled"
       @timeout="handleTimeout"
       @restart="resetGame"
     />
@@ -57,8 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useConfig } from "../store/config";
+import { successSound, failureSound, playSound } from "../utils/audio";
 import { maps } from "../data/maps";
 import GameHeader from "../components/GameHeader.vue";
 import MapImage from "../components/MapImage.vue";
@@ -66,8 +59,10 @@ import MapSelection from "../components/MapSelection.vue";
 import GameOver from "../components/GameOver.vue";
 import RoundResult from "../components/RoundResult.vue";
 import Countdown from "../components/Countdown.vue";
+import { ref } from "vue";
+import { useConfig } from "../store/config";
 
-const { hardMode, soundsEnabled } = useConfig();
+const { hardMode } = useConfig();
 
 const score = ref(0);
 const currentRound = ref(1);
@@ -77,35 +72,10 @@ const gameState = ref<"countdown" | "playing" | "guessed" | "finished">(
 );
 const currentImage = ref(0);
 const showCountdown = ref(true);
-const successSound = new Audio("/assets/sounds/success.mp3");
-const failureSound = new Audio("/assets/sounds/failure.mp3");
-
-const playSound = (sound: HTMLAudioElement) => {
-  if (soundsEnabled.value) {
-    sound.currentTime = 0;
-    sound
-      .play()
-      .catch((error) => console.error("Failed to play sound:", error));
-  }
-};
 
 const startGame = () => {
   showCountdown.value = false;
   gameState.value = "playing";
-};
-
-const handleGuess = (mapName: string) => {
-  if (gameState.value !== "playing") return;
-
-  const isCorrect = mapName === maps[currentImage.value].name;
-  if (isCorrect) {
-    const points = maps[currentImage.value].images[0].points;
-    score.value += points;
-    playSound(successSound);
-  } else {
-    playSound(failureSound);
-  }
-  gameState.value = "guessed";
 };
 
 const startNewRound = () => {
@@ -132,6 +102,20 @@ const resetGame = () => {
   currentImage.value = Math.floor(Math.random() * maps.length);
   showCountdown.value = true;
   gameState.value = "countdown";
+};
+
+const handleGuess = (mapName: string) => {
+  if (gameState.value !== "playing") return;
+
+  const isCorrect = mapName === maps[currentImage.value].name;
+  if (isCorrect) {
+    const points = maps[currentImage.value].images[0].points;
+    score.value += points;
+    playSound(successSound);
+  } else {
+    playSound(failureSound);
+  }
+  gameState.value = "guessed";
 };
 </script>
 
