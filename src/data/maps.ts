@@ -9,6 +9,7 @@ export interface Map {
   description: string;
   thumbnail: string;
   fullscreen: string;
+  minimap: string;
   images: MapImageData[];
 }
 
@@ -18,6 +19,7 @@ export const maps: Map[] = [
     description: "Dont fall off the edge !",
     thumbnail: "/assets/maps/abyss-thumbnail.webp",
     fullscreen: "/assets/maps/abyss-full.webp",
+    minimap: "/assets/maps/abyss_minimap.webp",
     images: [
       { url: "/assets/maps/abyss/02a19a23-e521-4742-883f-2c2973c81ab9.png", points: 100, coordinates: { x: 50, y: 50 } },
       { url: "/assets/maps/abyss/47a11925-19dd-4c54-b956-ac0821ef3e80.png", points: 200, coordinates: { x: 60, y: 60 } },
@@ -31,7 +33,6 @@ export const maps: Map[] = [
       { url: "/assets/maps/abyss/4748d36c-dfa4-4bb5-9a98-240e1e5ec355.png", points: 550, coordinates: { x: 140, y: 140 } },
       { url: "/assets/maps/abyss/a8b70f8c-f1d4-47dd-9417-9166fd46cfa2.png", points: 600, coordinates: { x: 150, y: 150 } },
       { url: "/assets/maps/abyss/f53c57b8-5341-47d2-9365-bbdd244fb9e6.png", points: 650, coordinates: { x: 160, y: 160 } },
-      { url: "/assets/maps/abyss/Abyss_minimap.webp", points: 700, coordinates: { x: 170, y: 170 } }
     ],
   },
   {
@@ -39,6 +40,7 @@ export const maps: Map[] = [
     description: "An open playground for small wars of position and attrition",
     thumbnail: "/assets/maps/ascent-thumbnail.webp",
     fullscreen: "/assets/maps/ascent-full.webp",
+    minimap: "/assets/maps/ascent_minimap.webp",
     images: [
       { url: "/assets/maps/ascent/0b522786-cea9-450d-9c04-7555430e5e17.png", points: 100, coordinates: { x: 50, y: 50 } },
       { url: "/assets/maps/ascent/59d31391-614c-4ba2-a4cf-083c6668fc8e.png", points: 200, coordinates: { x: 60, y: 60 } },
@@ -52,88 +54,96 @@ export const maps: Map[] = [
       { url: "/assets/maps/ascent/493a0c09-5cec-4d85-8171-0be0a9b1872c.png", points: 550, coordinates: { x: 140, y: 140 } },
       { url: "/assets/maps/ascent/59907e38-e1b5-4470-99e1-442ca3c4812a.png", points: 600, coordinates: { x: 150, y: 150 } },
       { url: "/assets/maps/ascent/eadcda21-4921-4191-9d08-c5d02a3f93c2.png", points: 650, coordinates: { x: 160, y: 160 } },
-      { url: "/assets/maps/ascent/Ascent_minimap.webp", points: 700, coordinates: { x: 170, y: 170 } }
     ],
   },
-  {
-    name: "Bind",
-    description: "Two sites. No middle. Teleporters.",
-    thumbnail: "/assets/maps/bind-thumbnail.webp",
-    fullscreen: "/assets/maps/bind-full.webp",
-    images: [
-      { url: "/assets/maps/bind/Bind_minimap.webp", points: 900, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Breeze",
-    description: "Take in the sights of historic ruins or seaside caves on this tropical paradise.",
-    thumbnail: "/assets/maps/breeze-thumbnail.webp",
-    fullscreen: "/assets/maps/breeze-full.webp",
-    images: [
-      { url: "/assets/maps/breeze/Breeze_minimap.webp", points: 700, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Fracture",
-    description: "A top secret research facility split apart by a failed radianite experiment.",
-    thumbnail: "/assets/maps/fracture-thumbnail.webp",
-    fullscreen: "/assets/maps/fracture-full.webp",
-    images: [
-      { url: "/assets/maps/fracture/Fracture_minimap.webp", points: 850, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Haven",
-    description: "Three sites. Long rotations. Intense mind games.",
-    thumbnail: "/assets/maps/haven-thumbnail.webp",
-    fullscreen: "/assets/maps/haven-full.webp",
-    images: [
-      { url: "/assets/maps/haven/Haven_minimap.webp", points: 950, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Icebox",
-    description: "Your next battleground is a secret Kingdom excavation site overtaken by the arctic.",
-    thumbnail: "/assets/maps/icebox-thumbnail.webp",
-    fullscreen: "/assets/maps/icebox-full.webp",
-    images: [
-      { url: "/assets/maps/icebox/Icebox_minimap.webp", points: 1000, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Lotus",
-    description: "A mysterious structure housing an astral conduit radiates with ancient power.",
-    thumbnail: "/assets/maps/lotus-thumbnail.webp",
-    fullscreen: "/assets/maps/lotus-full.webp",
-    images: [
-      { url: "/assets/maps/lotus/Lotus_minimap.webp", points: 750, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Pearl",
-    description: "Attackers push down into the Defenders on this two-site map set in a vibrant, underwater city.",
-    thumbnail: "/assets/maps/pearl-thumbnail.webp",
-    fullscreen: "/assets/maps/pearl-full.webp",
-    images: [
-      { url: "/assets/maps/pearl/Pearl_minimap.webp", points: 800, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Split",
-    description: "Elevated sites, rope ascenders, and a focus on vertical gameplay",
-    thumbnail: "/assets/maps/split-thumbnail.webp",
-    fullscreen: "/assets/maps/split-full.webp",
-    images: [
-      { url: "/assets/maps/split/Split_minimap.webp", points: 900, coordinates: { x: 50, y: 50 } }
-    ],
-  },
-  {
-    name: "Sunset",
-    description: "Stop at your favorite food truck then fight across the city in this traditional three lane map.",
-    thumbnail: "/assets/maps/sunset-thumbnail.webp",
-    fullscreen: "/assets/maps/sunset-full.webp",
-    images: [
-      { url: "/assets/maps/sunset/Sunset_minimap.webp", points: 850, coordinates: { x: 50, y: 50 } }
-    ],
-  },
+  // {
+  //   name: "Bind",
+  //   description: "Two sites. No middle. Teleporters.",
+  //   thumbnail: "/assets/maps/bind-thumbnail.webp",
+  //   fullscreen: "/assets/maps/bind-full.webp",
+  //   minimap: "/assets/maps/bind/Bind_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Breeze",
+  //   description: "Take in the sights of historic ruins or seaside caves on this tropical paradise.",
+  //   thumbnail: "/assets/maps/breeze-thumbnail.webp",
+  //   fullscreen: "/assets/maps/breeze-full.webp",
+  //   minimap: "/assets/maps/Breeze_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Fracture",
+  //   description: "A top secret research facility split apart by a failed radianite experiment.",
+  //   thumbnail: "/assets/maps/fracture-thumbnail.webp",
+  //   fullscreen: "/assets/maps/fracture-full.webp",
+  //   minimap: "/assets/maps/Fracture_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Haven",
+  //   description: "Three sites. Long rotations. Intense mind games.",
+  //   thumbnail: "/assets/maps/haven-thumbnail.webp",
+  //   fullscreen: "/assets/maps/haven-full.webp",
+  //   minimap: "/assets/maps/Haven_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Icebox",
+  //   description: "Your next battleground is a secret Kingdom excavation site overtaken by the arctic.",
+  //   thumbnail: "/assets/maps/icebox-thumbnail.webp",
+  //   fullscreen: "/assets/maps/icebox-full.webp",
+  //   minimap: "/assets/maps/Icebox_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Lotus",
+  //   description: "A mysterious structure housing an astral conduit radiates with ancient power.",
+  //   thumbnail: "/assets/maps/lotus-thumbnail.webp",
+  //   fullscreen: "/assets/maps/lotus-full.webp",
+  //   minimap: "/assets/maps/Lotus_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Pearl",
+  //   description: "Attackers push down into the Defenders on this two-site map set in a vibrant, underwater city.",
+  //   thumbnail: "/assets/maps/pearl-thumbnail.webp",
+  //   fullscreen: "/assets/maps/pearl-full.webp",
+  //   minimap: "/assets/maps/Pearl_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Split",
+  //   description: "Elevated sites, rope ascenders, and a focus on vertical gameplay",
+  //   thumbnail: "/assets/maps/split-thumbnail.webp",
+  //   fullscreen: "/assets/maps/split-full.webp",
+  //   minimap: "/assets/maps/Split_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
+  // {
+  //   name: "Sunset",
+  //   description: "Stop at your favorite food truck then fight across the city in this traditional three lane map.",
+  //   thumbnail: "/assets/maps/sunset-thumbnail.webp",
+  //   fullscreen: "/assets/maps/sunset-full.webp",
+  //   minimap: "/assets/maps/Sunset_minimap.webp",
+  //   images: [
+  //     { url: "", points: 850, coordinates: { x: 50, y: 50 } },
+  //   ],
+  // },
 ];

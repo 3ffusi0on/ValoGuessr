@@ -52,7 +52,6 @@
       </button>
 
       <button
-        disabled
         @click="startFindCoordinatesGame"
         class="w-64 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-bold text-lg hover:opacity-90 transition-all hover:scale-105 animate-pulse relative overflow-hidden group"
       >
