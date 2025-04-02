@@ -57,12 +57,22 @@
                         Confirm Location
                       </button>
                     </template>
-                    <GuessResult
-                      v-else-if="gameState === 'guessed' && lastGuess"
-                      :distance="lastGuess.distance"
-                      :score="lastGuess.points"
-                      @nextRound="startNewRound"
-                    />
+                    <div v-else-if="gameState === 'guessed'">
+                      <GuessResult
+                        v-if="timeoutOccurred"
+                        :distance="0"
+                        :score="0"
+                        :isTimeout="true"
+                        @nextRound="startNewRound"
+                      />
+                      <GuessResult
+                        v-else-if="lastGuess"
+                        :distance="lastGuess.distance"
+                        :score="lastGuess.points"
+                        :isTimeout="false"
+                        @nextRound="startNewRound"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,6 +109,7 @@ const showCountdown = ref(true);
 const lastGuess = ref<{ distance: number; points: number } | null>(null);
 const currentGuess = ref<{ x: number; y: number } | null>(null);
 const isImageVisible = ref(false);
+const timeoutOccurred = ref(false);
 
 const currentMap = computed(() => maps[currentImage.value]);
 const currentImageData = computed(() => maps[currentImage.value].images[0]);
@@ -151,6 +162,7 @@ const startNewRound = () => {
     lastGuess.value = null;
     currentGuess.value = null;
     isImageVisible.value = false;
+    timeoutOccurred.value = false;
 
     // Pick a new random image
     let newImage;
@@ -169,6 +181,7 @@ const startNewRound = () => {
 
 const handleTimeout = () => {
   if (hardMode.value) {
+    timeoutOccurred.value = true;
     gameState.value = "guessed";
   }
 };
@@ -179,6 +192,7 @@ const resetGame = () => {
   lastGuess.value = null;
   currentGuess.value = null;
   isImageVisible.value = false;
+  timeoutOccurred.value = false;
   currentImage.value = Math.floor(Math.random() * maps.length);
   showCountdown.value = true;
   gameState.value = "countdown";

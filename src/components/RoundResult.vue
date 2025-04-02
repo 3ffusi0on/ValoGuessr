@@ -1,7 +1,13 @@
 <template>
   <div class="text-center space-y-4">
     <h3 class="text-2xl font-bold">
-      {{ selectedMap === mapName ? "🎉 Correct!" : "❌ Wrong!" }}
+      {{
+        selectedMap === mapName
+          ? "🎉 Correct!"
+          : isTimeout
+          ? "❌ Timeout!"
+          : "❌ Wrong!"
+      }}
     </h3>
     <p>The location was in {{ mapName }}</p>
     <button
@@ -17,6 +23,7 @@
 const props = defineProps<{
   selectedMap: string;
   mapName: string;
+  isTimeout?: boolean;
 }>();
 
 const emit = defineEmits<{

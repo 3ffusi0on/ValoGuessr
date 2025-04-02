@@ -40,7 +40,7 @@ import { useTheme } from "../store/theme";
 const { hardMode, soundsEnabled } = useConfig();
 const { isDark, toggleTheme } = useTheme();
 
-const emit = defineEmits<{
+defineEmits<{
   (e: "restart"): void;
 }>();
 

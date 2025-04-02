@@ -1,5 +1,5 @@
 <template>
-  <Navigation @restart="$emit('restart')">
+  <Header @restart="$emit('restart')">
     <template v-if="gameState !== 'start'">
       <div v-if="hardMode" class="flex items-center gap-2">
         <Timer class="w-5 h-5 text-blue-500" />
@@ -19,13 +19,13 @@
         Round {{ currentRound }}
       </div>
     </template>
-  </Navigation>
+  </Header>
 </template>
 
 <script setup lang="ts">
 import { Trophy, Timer } from "lucide-vue-next";
 import GameTimer from "./GameTimer.vue";
-import Navigation from "./Navigation.vue";
+import Header from "./Header.vue";
 import { useConfig } from "../store/config";
 
 const { hardMode } = useConfig();

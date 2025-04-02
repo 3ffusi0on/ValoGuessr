@@ -40,6 +40,7 @@
                 v-else-if="gameState === 'guessed'"
                 :selectedMap="selectedMap"
                 :mapName="maps[currentImage].name"
+                :isTimeout="timeoutOccurred"
                 @nextRound="startNewRound"
               />
             </transition>
@@ -69,6 +70,7 @@ const { hardMode } = useConfig();
 const score = ref(0);
 const currentRound = ref(1);
 const selectedMap = ref("");
+const timeoutOccurred = ref(false);
 const gameState = ref<"countdown" | "playing" | "guessed" | "finished">(
   "countdown"
 );
@@ -86,6 +88,7 @@ const startNewRound = () => {
   } else {
     currentRound.value++;
     selectedMap.value = "";
+    timeoutOccurred.value = false;
     gameState.value = "playing";
     currentImage.value = Math.floor(Math.random() * maps.length);
   }
@@ -93,6 +96,7 @@ const startNewRound = () => {
 
 const handleTimeout = () => {
   if (hardMode.value) {
+    timeoutOccurred.value = true;
     gameState.value = "guessed";
   }
 };
@@ -101,6 +105,7 @@ const resetGame = () => {
   score.value = 0;
   currentRound.value = 1;
   selectedMap.value = "";
+  timeoutOccurred.value = false;
   currentImage.value = Math.floor(Math.random() * maps.length);
   showCountdown.value = true;
   gameState.value = "countdown";
