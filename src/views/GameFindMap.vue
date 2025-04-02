@@ -1,5 +1,5 @@
 <template>
-  <div class="animate-game-enter">
+  <div class="animate-game-enter flex flex-col min-h-screen">
     <Countdown v-if="showCountdown" @complete="startGame" />
     <GameHeader
       :score="score"
@@ -8,7 +8,7 @@
       @timeout="handleTimeout"
       @restart="resetGame"
     />
-    <main class="container mx-auto pt-24">
+    <main class="container mx-auto pt-24 flex-grow">
       <transition name="fade" mode="out-in">
         <GameOver
           v-if="gameState === 'finished'"
@@ -47,6 +47,7 @@
         </div>
       </transition>
     </main>
+    <Footer />
   </div>
 </template>
 
@@ -59,6 +60,7 @@ import MapSelection from "../components/MapSelection.vue";
 import GameOver from "../components/GameOver.vue";
 import RoundResult from "../components/RoundResult.vue";
 import Countdown from "../components/Countdown.vue";
+import Footer from "../components/Footer.vue";
 import { ref } from "vue";
 import { useConfig } from "../store/config";
 

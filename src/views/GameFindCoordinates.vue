@@ -1,5 +1,5 @@
 <template>
-  <div class="animate-game-enter">
+  <div class="animate-game-enter flex flex-col min-h-screen">
     <Countdown v-if="showCountdown" @complete="startGame" />
     <GameHeader
       :score="score"
@@ -10,7 +10,7 @@
       @timeout="handleTimeout"
       @restart="resetGame"
     />
-    <main class="container mx-auto pt-24">
+    <main class="container mx-auto pt-24 flex-grow">
       <transition name="fade" mode="out-in">
         <GameOver
           v-if="gameState === 'finished'"
@@ -71,6 +71,7 @@
         </div>
       </transition>
     </main>
+    <Footer />
   </div>
 </template>
 
@@ -84,6 +85,7 @@ import GameOver from "../components/GameOver.vue";
 import Countdown from "../components/Countdown.vue";
 import MapPicker from "../components/MapPicker.vue";
 import GuessResult from "../components/GuessResult.vue";
+import Footer from "../components/Footer.vue";
 
 const { hardMode, soundsEnabled } = useConfig();
 

@@ -1,15 +1,16 @@
 <template>
-  <div class="relative min-h-screen">
+  <div class="relative min-h-screen flex flex-col">
     <div class="absolute inset-0 overflow-hidden">
       <div class="grid-background"></div>
     </div>
     <Navigation />
-    <div class="pt-24">
+    <div class="pt-24 flex-grow">
       <StartScreen
         @startFindMap="startFindMapGame"
         @startFindCoordinates="startFindCoordinatesGame"
       />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -17,6 +18,7 @@
 import { useRouter } from "vue-router";
 import StartScreen from "../components/StartScreen.vue";
 import Navigation from "../components/Navigation.vue";
+import Footer from "../components/Footer.vue";
 
 const router = useRouter();
 
