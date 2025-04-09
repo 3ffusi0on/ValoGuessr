@@ -8,7 +8,7 @@
       @timeout="handleTimeout"
       @restart="resetGame"
     />
-    <main class="container mx-auto pt-24 flex-grow">
+    <main class="container mx-auto pt-24 pb-8 flex-grow">
       <transition name="fade" mode="out-in">
         <GameOver
           v-if="gameState === 'finished'"

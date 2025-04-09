@@ -9,6 +9,11 @@
       <div class="flex items-center gap-2 cursor-pointer" @click="navigateHome">
         <MapPin class="w-6 h-6 text-red-500" />
         <h1 class="text-2xl font-bold">ValorantGuessr</h1>
+        <div
+          class="bg-yellow-500 text-xs font-semibold text-black px-2 py-1 rounded-md animate-pulse"
+        >
+          BETA
+        </div>
       </div>
       <div class="flex items-center gap-4">
         <slot></slot>

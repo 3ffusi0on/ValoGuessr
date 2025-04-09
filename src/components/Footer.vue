@@ -27,7 +27,7 @@
           >Terms</a
         >
         <a
-          href="https://github.com"
+          href="https://github.com/3ffusi0on/ValoGuessr"
           target="_blank"
           class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1"
         >

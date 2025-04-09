@@ -17,11 +17,7 @@
       <ul class="text-gray-400 space-y-2">
         <li class="flex items-center gap-2 justify-center">
           <Trophy class="w-5 h-5 text-yellow-500" />
-          <span>Points based on image difficulty</span>
-        </li>
-        <li class="flex items-center gap-2 justify-center">
-          <Flag class="w-5 h-5 text-green-500" />
-          <span>Unlimited rounds</span>
+          <span>Identify the map based on a screenshot</span>
         </li>
         <li class="flex items-center gap-2 justify-center">
           <ShieldAlert class="w-5 h-5 text-red-500" />
@@ -35,7 +31,19 @@
       <ul class="text-gray-400 space-y-2">
         <li class="flex items-center gap-2 justify-center">
           <MapPin class="w-5 h-5 text-blue-500" />
-          <span>Ping the location you guessed on the map</span>
+          <span>Find a location on the map</span>
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <Users class="w-5 h-5 text-purple-500" />
+          <span>Versus mode with your friends</span>
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <Flag class="w-5 h-5 text-green-500" />
+          <span>Daily or Unlimited rounds</span>
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <Image class="w-5 h-5 text-orange-500" />
+          <span>Suggest your own screenshots</span>
         </li>
       </ul>
     </div>
@@ -65,7 +73,14 @@
 </template>
 
 <script setup lang="ts">
-import { MapPin, Trophy, Flag, ShieldAlert } from "lucide-vue-next";
+import {
+  MapPin,
+  Trophy,
+  Flag,
+  ShieldAlert,
+  Users,
+  Image,
+} from "lucide-vue-next";
 
 const emit = defineEmits<{
   (e: "startFindMap"): void;
